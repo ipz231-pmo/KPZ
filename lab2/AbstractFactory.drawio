@@ -1,0 +1,119 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.0.16 Chrome/132.0.6834.196 Electron/34.2.0 Safari/537.36" version="26.0.16">
+  <diagram name="Сторінка-1" id="YovbNYde0ID2oSLEl0Dk">
+    <mxGraphModel dx="1292" dy="965" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="5915b6gxuS9S08Bc9Gc6-1" value="«interface»&lt;br&gt;&lt;b&gt;IPhone&lt;/b&gt;" style="html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="330" y="355" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="5915b6gxuS9S08Bc9Gc6-2" value="«interface»&lt;br&gt;&lt;b&gt;ILaptop&lt;/b&gt;" style="html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="470" y="355" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="5915b6gxuS9S08Bc9Gc6-3" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&amp;lt;&amp;lt;Interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b&gt;IGadgetCreator&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ createPhone(): IPhone&lt;br&gt;+ createLaptop(): ILaptop&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="640" y="330" width="150" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="5915b6gxuS9S08Bc9Gc6-4" value="XiaomiPhone" style="html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="330" y="250" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="5915b6gxuS9S08Bc9Gc6-5" value="XiaomiLaptop" style="html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="470" y="250" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="5915b6gxuS9S08Bc9Gc6-6" value="GalaxyPhone" style="html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="330" y="440" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="5915b6gxuS9S08Bc9Gc6-7" value="GalaxyLaptop" style="html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="470" y="440" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="5915b6gxuS9S08Bc9Gc6-8" value="XiaomiGadgetCreator" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="635" y="138" width="160" height="81" as="geometry">
+            <mxRectangle x="640" y="214" width="160" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5915b6gxuS9S08Bc9Gc6-11" value="+ createPhone(): IPhone&lt;br&gt;+ createLaptop(): ILaptop" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="5915b6gxuS9S08Bc9Gc6-8">
+          <mxGeometry y="26" width="160" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="5915b6gxuS9S08Bc9Gc6-12" value="GalaxyGadgetCreator" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="635" y="525" width="160" height="81" as="geometry">
+            <mxRectangle x="640" y="214" width="160" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5915b6gxuS9S08Bc9Gc6-13" value="+ createPhone(): IPhone&lt;br&gt;+ createLaptop(): ILaptop" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="5915b6gxuS9S08Bc9Gc6-12">
+          <mxGeometry y="26" width="160" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="5915b6gxuS9S08Bc9Gc6-14" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;rounded=0;" edge="1" parent="1" source="5915b6gxuS9S08Bc9Gc6-7" target="5915b6gxuS9S08Bc9Gc6-2">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="585" y="427" as="sourcePoint" />
+            <mxPoint x="646" y="461" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5915b6gxuS9S08Bc9Gc6-15" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;rounded=0;" edge="1" parent="1" source="5915b6gxuS9S08Bc9Gc6-6" target="5915b6gxuS9S08Bc9Gc6-1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="299" y="443" as="sourcePoint" />
+            <mxPoint x="299" y="408" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5915b6gxuS9S08Bc9Gc6-16" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;rounded=0;" edge="1" parent="1" source="5915b6gxuS9S08Bc9Gc6-4" target="5915b6gxuS9S08Bc9Gc6-1">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="314" y="365" as="sourcePoint" />
+            <mxPoint x="314" y="330" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5915b6gxuS9S08Bc9Gc6-17" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;rounded=0;" edge="1" parent="1" source="5915b6gxuS9S08Bc9Gc6-5" target="5915b6gxuS9S08Bc9Gc6-2">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="453" y="308" as="sourcePoint" />
+            <mxPoint x="453" y="363" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5915b6gxuS9S08Bc9Gc6-18" value="return" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;" edge="1" parent="1" source="5915b6gxuS9S08Bc9Gc6-8" target="5915b6gxuS9S08Bc9Gc6-5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="636" y="337" as="sourcePoint" />
+            <mxPoint x="556" y="337" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="525" y="180" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5915b6gxuS9S08Bc9Gc6-19" value="return" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;" edge="1" parent="1" source="5915b6gxuS9S08Bc9Gc6-8" target="5915b6gxuS9S08Bc9Gc6-4">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="491" y="163" as="sourcePoint" />
+            <mxPoint x="430" y="194" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="385" y="180" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5915b6gxuS9S08Bc9Gc6-20" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;rounded=0;" edge="1" parent="1" source="5915b6gxuS9S08Bc9Gc6-8" target="5915b6gxuS9S08Bc9Gc6-3">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="708" y="269" as="sourcePoint" />
+            <mxPoint x="708" y="324" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5915b6gxuS9S08Bc9Gc6-21" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;rounded=0;" edge="1" parent="1" source="5915b6gxuS9S08Bc9Gc6-12" target="5915b6gxuS9S08Bc9Gc6-3">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="842" y="371" as="sourcePoint" />
+            <mxPoint x="842" y="482" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5915b6gxuS9S08Bc9Gc6-22" value="return" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;" edge="1" parent="1" source="5915b6gxuS9S08Bc9Gc6-12" target="5915b6gxuS9S08Bc9Gc6-7">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="597" y="586" as="sourcePoint" />
+            <mxPoint x="487" y="657" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="525" y="569" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5915b6gxuS9S08Bc9Gc6-23" value="return" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;" edge="1" parent="1" source="5915b6gxuS9S08Bc9Gc6-12" target="5915b6gxuS9S08Bc9Gc6-6">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="494" y="630" as="sourcePoint" />
+            <mxPoint x="383" y="552" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="385" y="570" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
