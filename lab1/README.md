@@ -1,3 +1,7 @@
+## Діаграма UML
+
+![diagram](lab1.drawio.png)
+
 ## Використані принципи
 
 ### Fail Fast
