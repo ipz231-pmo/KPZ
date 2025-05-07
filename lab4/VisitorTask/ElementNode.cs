@@ -3,7 +3,7 @@
 namespace VisitorTask;
 
 // Composite entity
-class ElementNode : INode
+class ElementNode : AbstractNode
 {
     public string TagName { get; }
     public bool IsBlock { get; }
@@ -29,7 +29,7 @@ class ElementNode : INode
         Children = [.. children];
     }
 
-    public string OuterHTML
+    public override string OuterHTML
     {
         get
         {
@@ -61,7 +61,7 @@ class ElementNode : INode
             return sb.ToString();
         }
     }
-    public string InnerHTML
+    public override string InnerHTML
     {
         get
         {

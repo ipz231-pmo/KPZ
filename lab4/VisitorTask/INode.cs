@@ -1,8 +1,11 @@
 ﻿namespace VisitorTask;
 
-// Component base class
+delegate void EventCallback(INode sender);
+
 interface INode
 {
-    public string InnerHTML { get; }
-    public string OuterHTML { get; }
+    string InnerHTML { get; }
+    string OuterHTML { get; }
+    void AddEventListener(string eventType, EventCallback callback);
+    void TriggerEvent(string eventType);
 }
