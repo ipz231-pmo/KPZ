@@ -20,7 +20,7 @@ class ElementNode : INode
         Children = [];
     }
 
-    public string OuterHTML
+    public virtual string OuterHTML
     {
         get
         {
@@ -47,7 +47,7 @@ class ElementNode : INode
             return sb.ToString();
         }
     }
-    public string InnerHTML
+    public virtual string InnerHTML
     {
         get
         {
