@@ -1,9 +1,10 @@
-﻿using System.Text;
+﻿using System.Collections;
+using System.Text;
 
 namespace LightHTML;
 
 
-class ElementNode : AbstractNode
+class ElementNode : AbstractNode, IEnumerable<INode>
 {
     public string TagName { get; set; }
     public bool IsBlock { get; set; }
@@ -60,5 +61,15 @@ class ElementNode : AbstractNode
             }
             return sb.ToString();
         }        
+    }
+
+    public IEnumerator<INode> GetEnumerator()
+    {
+        return Children.GetEnumerator();
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
     }
 }
