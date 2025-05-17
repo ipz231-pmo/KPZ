@@ -3,7 +3,7 @@
 namespace LightHTML;
 
 
-class ElementNode : INode
+class ElementNode : AbstractNode
 {
     public string TagName { get; set; }
     public bool IsBlock { get; set; }
@@ -20,7 +20,7 @@ class ElementNode : INode
         Children = [];
     }
 
-    public virtual string OuterHTML
+    public override string OuterHTML
     {
         get
         {
@@ -47,7 +47,7 @@ class ElementNode : INode
             return sb.ToString();
         }
     }
-    public virtual string InnerHTML
+    public override string InnerHTML
     {
         get
         {

@@ -6,8 +6,9 @@ ElementNode container = new("div");
 
 ButtonNode btn = new();
 container.Children.Add(btn);
-btn.SetClickCommand(new SaveCommand());
-btn.SetMouseEnterCommand(new HoverCommand());
+btn.AddEventListener("click", new SaveCommand());
+btn.AddEventListener("mouseenter", new HoverCommand());
+btn.AddEventListener("mouseleave", () => { Console.WriteLine("Mouse leaved btn"); });
 
 TextNode txt = new("Click on me!");
 btn.Children.Add(txt);
@@ -15,5 +16,6 @@ btn.Children.Add(txt);
 string document = container.OuterHTML;
 Console.WriteLine(document);
 
-btn.PerformClick();
-btn.PerformMouseEnter();
+btn.TriggerEvent("click");
+btn.TriggerEvent("mouseenter");
+btn.TriggerEvent("mouseleave");
