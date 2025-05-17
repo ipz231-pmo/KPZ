@@ -1,7 +1,7 @@
 ﻿namespace LightHTML;
 
 
-class TextNode : INode
+class TextNode : AbstractNode
 {
     public string Text { get; set; }
 
@@ -10,15 +10,12 @@ class TextNode : INode
         Text = text;
     }
 
-    public string InnerHTML
+    public override string InnerHTML
     {
         get => Text;
-        set => Text = value;
     }
-    public string OuterHTML 
+    public override string OuterHTML 
     {
         get => Text;
-        set => Text = value;
     }
-
 }
