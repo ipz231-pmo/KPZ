@@ -25,6 +25,7 @@ abstract class AbstractNode : INode
 
     public void TriggerEvent(string eventType)
     {
+        OnBeforeEvent(eventType);
         if (eventListenersActions.TryGetValue(eventType, out var listeners))
         {
             foreach (var callback in listeners)
@@ -35,5 +36,10 @@ abstract class AbstractNode : INode
             foreach (var cmd in cmds)
                 cmd.Execute(this);
         }
+        OnAfterEvent(eventType);
     }
+
+    public virtual void OnBeforeEvent(string eventType) {  }
+
+    public virtual void OnAfterEvent(string eventType) {  }
 }
