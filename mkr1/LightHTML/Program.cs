@@ -6,11 +6,12 @@ ElementNode container = new("div");
 container.CssClasses.Add("container");
 container.CssClasses.Add("d-flex");
 
-for (int i = 0; i < 4; i++)
+for (int i = 1; i <= 4; i++)
 {
     ButtonNode btn = new();
     container.Children.Add(btn);
-    btn.AddEventListener("click", () => { Console.WriteLine($"Redirecting to page /items/item-{i}/"); });
+    int savedNumber = i;
+    btn.AddEventListener("click", () => { Console.WriteLine($"Redirecting to page /items/item-{savedNumber}/"); });
     btn.CssClasses.Add("p-3");
     btn.CssClasses.Add("rounded");
     btn.CssClasses.Add("bg-secondary");
@@ -33,5 +34,13 @@ foreach(var item in container)
 }
 
 AbstractNode node = (AbstractNode)container.First(n => n is AbstractNode);
+Console.WriteLine();
+Console.WriteLine("Markup Before button events");
+Console.WriteLine(node.OuterHTML);
+Console.WriteLine("In process");
 node.TriggerEvent("mouseenter");
 node.TriggerEvent("click");
+
+Console.WriteLine();
+Console.WriteLine("Markup After button events");
+Console.WriteLine(node.OuterHTML);
