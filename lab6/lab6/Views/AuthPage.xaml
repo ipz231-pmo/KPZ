@@ -15,7 +15,7 @@
             <TextBox Text="{Binding Path=Login, UpdateSourceTrigger=PropertyChanged}" FontSize="18"/>
             <Label Content="Password" FontSize="14"/>
             <TextBox Text="{Binding Path=Password, UpdateSourceTrigger=PropertyChanged}" FontSize="18" Margin="0 0 0 25"/>
-            <Button Content="Button" Command="{Binding AuthCmd}" Padding="15 10" FontSize="16"/>
+            <Button Content="Auth" Command="{Binding AuthCmd}" Padding="15 10" FontSize="16"/>
             <Label Content="Dont have an account? Register" Foreground="Red" MouseDown="Label_MouseDown" FontSize="10" MouseEnter="Label_MouseEnter" MouseLeave="Label_MouseLeave" />
         </StackPanel>
     </Grid>
