@@ -19,6 +19,9 @@
         <DataTemplate DataType="{x:Type vm:MenuVM}">
             <local:MenuPage/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:RegisterVM}">
+            <local:RegisterPage/>
+        </DataTemplate>
     </Window.Resources>
     <Grid Width="450" Height="600">
         <ContentControl Content="{Binding CurrentVM}"/>

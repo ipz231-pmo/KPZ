@@ -25,9 +25,27 @@ class MainVM : Core.VMBase
             currentUser = e.User;
             setMenuVM();
         };
+		vm.RegisterHndl += (sender, e) =>
+		{
+            setRegisterVM();
+		};
         CurrentVM = vm;
     }
-	private void setMenuVM()
+
+    private void setRegisterVM()
+    {
+        var vm = new RegisterVM();
+        vm.RegisterHndl += (sender, e) => {
+            currentUser = e.User;
+            setMenuVM();
+        };
+        vm.AuthHndl += (sender, e) => {
+            setAuthVM();
+        };
+        CurrentVM = vm;
+    }
+
+    private void setMenuVM()
 	{
 		var vm = new MenuVM();
 		vm.LogoutHndl += (sender, e) =>
