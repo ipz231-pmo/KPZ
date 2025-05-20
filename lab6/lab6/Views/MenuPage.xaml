@@ -16,7 +16,7 @@
                     <Setter Property="Margin" Value="0 0 0 10"/>
                 </Style>
             </StackPanel.Resources>
-            <Button Content="Start Game"/>
+            <Button Content="Start Game" Command="{Binding StartCmd}"/>
             <Button Content="Log out" Command="{Binding LogoutCmd}"/>
             <Button Content="Exit"  Command="{Binding ExitCmd}"/>
         </StackPanel>

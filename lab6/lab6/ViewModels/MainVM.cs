@@ -53,9 +53,16 @@ class MainVM : Core.VMBase
 			currentUser = null;
 			setAuthVM();
 		};
+        vm.ExitHndl += (sender, e) => { App.Current.MainWindow.Close(); };
+        vm.StartHndl += (sender, e) => setGameVM();
 		CurrentVM = vm;
 	}
-
+    private void setGameVM()
+    {
+        var vm = new GameVM();
+        vm.EndHndl += (sender, e) => { setMenuVM(); };
+        CurrentVM = vm;
+    }
 
     public object CurrentVM
     {
