@@ -2,9 +2,35 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:lab6"
-             xmlns:views="clr-namespace:lab6.Views"             
+             xmlns:view="clr-namespace:lab6.Views"
+             xmlns:vm="clr-namespace:lab6.ViewModels"
              StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <BitmapImage x:Key="CellMine" UriSource="Assets/tile_mine.png"/>
+            <BitmapImage x:Key="CellPlain" UriSource="Assets/tile_plain.png"/>
+            <BitmapImage x:Key="CellFlagged" UriSource="Assets/tile_flag.png"/>
+            <BitmapImage x:Key="Cell0" UriSource="Assets/tile_0.png"/>
+            <BitmapImage x:Key="Cell1" UriSource="Assets/tile_1.png"/>
+            <BitmapImage x:Key="Cell2" UriSource="Assets/tile_2.png"/>
+            <BitmapImage x:Key="Cell3" UriSource="Assets/tile_3.png"/>
+            <BitmapImage x:Key="Cell4" UriSource="Assets/tile_4.png"/>
+            <BitmapImage x:Key="Cell5" UriSource="Assets/tile_5.png"/>
+            <BitmapImage x:Key="Cell6" UriSource="Assets/tile_6.png"/>
+            <BitmapImage x:Key="Cell7" UriSource="Assets/tile_7.png"/>
+            <BitmapImage x:Key="Cell8" UriSource="Assets/tile_8.png"/>
+            <DataTemplate DataType="{x:Type vm:AuthVM}">
+                <view:AuthPage/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:MenuVM}">
+                <view:MenuPage/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:RegisterVM}">
+                <view:RegisterPage/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:GameVM}">
+                <view:GamePage/>
+            </DataTemplate>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

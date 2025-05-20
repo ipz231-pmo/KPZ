@@ -11,14 +11,17 @@ class MenuVM : Core.VMBase
 {
     public RelayCommand LogoutCmd { get; set; }
     public RelayCommand ExitCmd { get; set; }
+    public RelayCommand StartCmd { get; set; }
 
     public EventHandler? LogoutHndl { get; set; }
     public EventHandler? ExitHndl { get; set; }
+    public EventHandler? StartHndl { get; set; }
 
 
     public MenuVM()
     {
         LogoutCmd = new RelayCommand((param) => LogoutHndl?.Invoke(this, EventArgs.Empty));
         ExitCmd = new RelayCommand((param) => ExitHndl?.Invoke(this, EventArgs.Empty));
+        StartCmd = new RelayCommand((param) => StartHndl?.Invoke(this, EventArgs.Empty));
     }
 }
