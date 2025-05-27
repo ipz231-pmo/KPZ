@@ -12,52 +12,51 @@ namespace lab6.ViewModels;
 
 class AuthVM : Core.VMBase
 {
-	private string login = "";
-	private string password = "";
+    private string login = "";
+    private string password = "";
 
-	public RelayCommand AuthCmd { get; set; }
-	public AuthVM()
-	{
+    public RelayCommand AuthCmd { get; set; }
+    public AuthVM()
+    {
         AuthCmd = new RelayCommand(auth, canAuth);
-	}
+    }
 
-	public EventHandler<AuthEventArgs>? AuthHndl;
-	public EventHandler? RegisterHndl;
+    public EventHandler<AuthEventArgs>? AuthHndl;
+    public EventHandler? RegisterHndl;
 
-	private void auth(object? param)
-	{
-		var db = MineSweeperDbContext.Instance;
-		User? user = db.Users.FirstOrDefault(u => u.Login == Login);
-		if (user == null)
-		{
-			Login = "";
-			Password = "";
+    private void auth(object? param)
+    {
+        using var db = new MineSweeperDbContext();
+        User? user = db.Users.FirstOrDefault(u => u.Login == Login);
+        if (user == null)
+        {
+            Login = "";
+            Password = "";
             MessageBox.Show("User with specified login are not exist");
             return;
         }
-		if (user.Password != Password)
-		{
-			Password = "";
+        if (user.Password != Password)
+        {
+            Password = "";
             MessageBox.Show("Password are incorrect");
             return;
-		}
-		AuthHndl?.Invoke(this, new AuthEventArgs(user));
+        }
+        AuthHndl?.Invoke(this, new AuthEventArgs(user));
+    }
 
-	}
-	private bool canAuth(object? param) => login.Length >= 4 && password.Length >= 8;
-		
+    private bool canAuth(object? param) => login.Length >= 4 && password.Length >= 8;
 
-	public string Login
-	{
-		get => login; 
-		set 
-		{ 
-			login = value;
-			NotifyOnPropertyChanged();
-		}
-	}
-	public string Password
-	{
+    public string Login
+    {
+        get => login;
+        set
+        {
+            login = value;
+            NotifyOnPropertyChanged();
+        }
+    }
+    public string Password
+    {
         get => password;
         set
         {
@@ -65,11 +64,11 @@ class AuthVM : Core.VMBase
             NotifyOnPropertyChanged();
         }
     }
-	
-	public class AuthEventArgs : EventArgs
-	{
+
+    public class AuthEventArgs : EventArgs
+    {
         public User User { get; set; }
-		public AuthEventArgs(User user)
+        public AuthEventArgs(User user)
         {
             User = user;
         }
