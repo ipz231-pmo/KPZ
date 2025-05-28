@@ -1,75 +1,95 @@
-﻿using lab6.Core;
-using lab6.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows;
+using lab6.Core;
+using lab6.Core.Services;
+using lab6.Models;
 
-namespace lab6.ViewModels;
-
-class RegisterVM : VMBase
+namespace lab6.ViewModels
 {
-    private string login = "";
-    private string password = "";
-    private string passwordConfirm = "";
-
-    public RelayCommand RegisterCmd { get; set; }
-
-    public EventHandler<RegisterEventsArgs>? RegisterHndl { get; set; }
-    public EventHandler? AuthHndl { get; set; }
-
-    public RegisterVM()
+    public class RegisterVM : VMBase
     {
-        RegisterCmd = new(register, canRegister);
-    }
+        private readonly IUserService _userService;
+        private string _login = "";
+        private string _password = "";
+        private string _passwordConfirm = "";
 
-    private void register(object? param)
-    {
-        using var db = new MineSweeperDbContext();
-        User? user = db.Users.FirstOrDefault(u => u.Login == Login);
-        if (user != null)
+        public RelayCommand RegisterCmd { get; }
+
+        public event EventHandler<RegisterEventsArgs>? RegisterHndl;
+        public event EventHandler? AuthHndl;
+
+        public RegisterVM(IUserService userService)
         {
-            Login = "";
-            Password = "";
-            PasswordConfirm = "";
-            MessageBox.Show("User login are taken");
-            return;
+            _userService = userService;
+            RegisterCmd = new RelayCommand(register, canRegister);
         }
-        user = new User() { Login = Login, Password = Password };
-        db.Users.Add(user);
-        db.SaveChanges();
-        RegisterHndl?.Invoke(this, new RegisterEventsArgs(user));
-    }
 
-    private bool canRegister(object? param)
-    {
-        return Login.Length >= 4 && Password.Length >= 8 && Password == PasswordConfirm;
-    }
+        public RegisterVM()
+            : this(new UserService())
+        { }
 
-    public string Login
-    {
-        get => login;
-        set { login = value; NotifyOnPropertyChanged(); }
-    }
-    public string Password
-    {
-        get { return password; }
-        set { password = value; NotifyOnPropertyChanged(); }
-    }
-    public string PasswordConfirm
-    {
-        get { return passwordConfirm; }
-        set { passwordConfirm = value; NotifyOnPropertyChanged(); }
-    }
-
-    public class RegisterEventsArgs : EventArgs
-    {
-        public User User { get; set; }
-        public RegisterEventsArgs(User user)
+        private void register(object? _)
         {
-            User = user;
+            try
+            {
+                var user = _userService.Register(Login, Password);
+                RegisterHndl?.Invoke(this, new RegisterEventsArgs(user));
+            }
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show(ex.Message);
+                Login = "";
+                Password = "";
+                PasswordConfirm = "";
+            }
+        }
+
+        private bool canRegister(object? _)
+            => Login.Length >= 4
+               && Password.Length >= 8
+               && Password == PasswordConfirm;
+
+        public string Login
+        {
+            get => _login;
+            set
+            {
+                if (_login == value) return;
+                _login = value;
+                NotifyOnPropertyChanged();
+                RegisterCmd.RaiseCanExecuteChanged();
+            }
+        }
+
+        public string Password
+        {
+            get => _password;
+            set
+            {
+                if (_password == value) return;
+                _password = value;
+                NotifyOnPropertyChanged();
+                RegisterCmd.RaiseCanExecuteChanged();
+            }
+        }
+
+        public string PasswordConfirm
+        {
+            get => _passwordConfirm;
+            set
+            {
+                if (_passwordConfirm == value) return;
+                _passwordConfirm = value;
+                NotifyOnPropertyChanged();
+                RegisterCmd.RaiseCanExecuteChanged();
+            }
+        }
+
+        public class RegisterEventsArgs : EventArgs
+        {
+            public User User { get; }
+
+            public RegisterEventsArgs(User user) => User = user;
         }
     }
 }

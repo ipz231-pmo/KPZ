@@ -1,76 +1,79 @@
-﻿using lab6.Core;
-using lab6.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
+using lab6.Core;
+using lab6.Core.Services;
+using lab6.Models;
 
-namespace lab6.ViewModels;
-
-class AuthVM : Core.VMBase
+namespace lab6.ViewModels
 {
-    private string login = "";
-    private string password = "";
-
-    public RelayCommand AuthCmd { get; set; }
-    public AuthVM()
+    public class AuthVM : VMBase
     {
-        AuthCmd = new RelayCommand(auth, canAuth);
-    }
+        private readonly IUserService _userService;
+        private string _login = "";
+        private string _password = "";
 
-    public EventHandler<AuthEventArgs>? AuthHndl;
-    public EventHandler? RegisterHndl;
+        public RelayCommand AuthCmd { get; }
 
-    private void auth(object? param)
-    {
-        using var db = new MineSweeperDbContext();
-        User? user = db.Users.FirstOrDefault(u => u.Login == Login);
-        if (user == null)
+        public AuthVM(IUserService userService)
         {
-            Login = "";
-            Password = "";
-            MessageBox.Show("User with specified login are not exist");
-            return;
+            _userService = userService;
+            AuthCmd = new RelayCommand(auth, canAuth);
         }
-        if (user.Password != Password)
-        {
-            Password = "";
-            MessageBox.Show("Password are incorrect");
-            return;
-        }
-        AuthHndl?.Invoke(this, new AuthEventArgs(user));
-    }
 
-    private bool canAuth(object? param) => login.Length >= 4 && password.Length >= 8;
+        public AuthVM()
+            : this(new UserService())
+        { }
 
-    public string Login
-    {
-        get => login;
-        set
-        {
-            login = value;
-            NotifyOnPropertyChanged();
-        }
-    }
-    public string Password
-    {
-        get => password;
-        set
-        {
-            password = value;
-            NotifyOnPropertyChanged();
-        }
-    }
+        public event EventHandler<AuthEventArgs>? AuthHndl;
+        public event EventHandler? RegisterHndl;
 
-    public class AuthEventArgs : EventArgs
-    {
-        public User User { get; set; }
-        public AuthEventArgs(User user)
+        private void auth(object? _)
         {
-            User = user;
+            var user = _userService.Authenticate(Login, Password);
+
+            if (user == null)
+            {
+                MessageBox.Show("Login or password are incorrect");
+                Login = "";
+                Password = "";
+                return;
+            }
+
+            AuthHndl?.Invoke(this, new AuthEventArgs(user));
+        }
+
+        private bool canAuth(object? _)
+            => Login.Length >= 4 && Password.Length >= 8;
+
+        public string Login
+        {
+            get => _login;
+            set
+            {
+                if (_login == value) return;
+                _login = value;
+                NotifyOnPropertyChanged();
+                AuthCmd.RaiseCanExecuteChanged();
+            }
+        }
+
+        public string Password
+        {
+            get => _password;
+            set
+            {
+                if (_password == value) return;
+                _password = value;
+                NotifyOnPropertyChanged();
+                AuthCmd.RaiseCanExecuteChanged();
+            }
+        }
+
+        public class AuthEventArgs : EventArgs
+        {
+            public User User { get; }
+            public AuthEventArgs(User user) => User = user;
         }
     }
 }
