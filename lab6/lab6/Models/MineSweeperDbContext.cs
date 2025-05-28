@@ -1,19 +1,30 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace lab6.Models;
 
 public class MineSweeperDbContext : DbContext
 {
-    public DbSet<User> Users => Set<User>();
+    public MineSweeperDbContext(DbContextOptions<MineSweeperDbContext> options)
+        : base(options)
+    { }
+
+    public MineSweeperDbContext()
+    { }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=MinesweeperDb;Trusted_Connection=True;");
+        if (!optionsBuilder.IsConfigured)
+        {
+            var config = new ConfigurationBuilder()
+               .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+               .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+               .Build();
+            var conn = config.GetConnectionString("DefaultConnection");
+            optionsBuilder.UseSqlServer(conn);
+        }
     }
+
+    public DbSet<User> Users => Set<User>();
 }
