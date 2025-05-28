@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Windows;
 using lab6.Core;
 using lab6.Core.Services;
 using lab6.Models;
@@ -10,19 +9,21 @@ namespace lab6.ViewModels
     public class AuthVM : VMBase
     {
         private readonly IUserService _userService;
-        private string _login = "";
-        private string _password = "";
+        private readonly IMessageService _messageService;
+        private string _login = string.Empty;
+        private string _password = string.Empty;
 
         public RelayCommand AuthCmd { get; }
 
-        public AuthVM(IUserService userService)
+        public AuthVM(IUserService userService, IMessageService messageService)
         {
             _userService = userService;
+            _messageService = messageService;
             AuthCmd = new RelayCommand(auth, canAuth);
         }
 
         public AuthVM()
-            : this(new UserService())
+            : this(new UserService(), new MessageService())
         { }
 
         public event EventHandler<AuthEventArgs>? AuthHndl;
@@ -31,20 +32,18 @@ namespace lab6.ViewModels
         private void auth(object? _)
         {
             var user = _userService.Authenticate(Login, Password);
-
             if (user == null)
             {
-                MessageBox.Show("Login or password are incorrect");
-                Login = "";
-                Password = "";
+                _messageService.Show("Login or password are incorrect");
+                Login = string.Empty;
+                Password = string.Empty;
                 return;
             }
-
             AuthHndl?.Invoke(this, new AuthEventArgs(user));
         }
 
-        private bool canAuth(object? _)
-            => Login.Length >= 4 && Password.Length >= 8;
+        private bool canAuth(object? _) =>
+            Login.Length >= 4 && Password.Length >= 8;
 
         public string Login
         {

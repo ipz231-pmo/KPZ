@@ -9,23 +9,25 @@ namespace lab6.ViewModels
     public class RegisterVM : VMBase
     {
         private readonly IUserService _userService;
-        private string _login = "";
-        private string _password = "";
-        private string _passwordConfirm = "";
+        private readonly IMessageService _messageService;
+        private string _login = string.Empty;
+        private string _password = string.Empty;
+        private string _passwordConfirm = string.Empty;
 
         public RelayCommand RegisterCmd { get; }
 
         public event EventHandler<RegisterEventsArgs>? RegisterHndl;
         public event EventHandler? AuthHndl;
 
-        public RegisterVM(IUserService userService)
+        public RegisterVM(IUserService userService, IMessageService messageService)
         {
             _userService = userService;
+            _messageService = messageService;
             RegisterCmd = new RelayCommand(register, canRegister);
         }
 
         public RegisterVM()
-            : this(new UserService())
+            : this(new UserService(), new MessageService())
         { }
 
         private void register(object? _)
@@ -37,17 +39,17 @@ namespace lab6.ViewModels
             }
             catch (InvalidOperationException ex)
             {
-                MessageBox.Show(ex.Message);
-                Login = "";
-                Password = "";
-                PasswordConfirm = "";
+                _messageService.Show(ex.Message);
+                Login = string.Empty;
+                Password = string.Empty;
+                PasswordConfirm = string.Empty;
             }
         }
 
-        private bool canRegister(object? _)
-            => Login.Length >= 4
-               && Password.Length >= 8
-               && Password == PasswordConfirm;
+        private bool canRegister(object? _) =>
+            Login.Length >= 4 &&
+            Password.Length >= 8 &&
+            Password == PasswordConfirm;
 
         public string Login
         {
@@ -88,7 +90,6 @@ namespace lab6.ViewModels
         public class RegisterEventsArgs : EventArgs
         {
             public User User { get; }
-
             public RegisterEventsArgs(User user) => User = user;
         }
     }
