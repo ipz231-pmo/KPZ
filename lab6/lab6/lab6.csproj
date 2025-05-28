@@ -22,6 +22,7 @@
     <None Remove="Assets\tile_mine.png" />
     <None Remove="Assets\tile_plain.png" />
     <None Remove="Assets\tile_wrong.png" />
+    <None Remove="Core\Services\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -48,4 +49,7 @@
     <Resource Include="Assets\tile_wrong.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Core\Services\" />
+  </ItemGroup>
 </Project>
