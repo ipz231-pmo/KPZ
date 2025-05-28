@@ -10,10 +10,20 @@ namespace lab6.Models;
 
 public class MineSweeperDbContext : DbContext
 {
-    public DbSet<User> Users => Set<User>();
+    public MineSweeperDbContext(DbContextOptions<MineSweeperDbContext> options)
+        : base(options)
+    { }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=MinesweeperDb;Trusted_Connection=True;");
+       if (!optionsBuilder.IsConfigured)
+        {
+            var config = new ConfigurationBuilder()
+               .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .Build();
+            var conn = config.GetConnectionString("DefaultConnection");
+            optionsBuilder.UseSqlServer(conn);
+        }
     }
 }
